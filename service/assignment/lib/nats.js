@@ -10,7 +10,7 @@ let result = 0;
 
 function connect() {
   return new Promise((resolve, reject) => {
-    client =  nats.connect();
+    client = nats.connect();
     client.on('connect', () => {
       resolve();
     });
@@ -35,7 +35,7 @@ function publisher(subject, message) {
 }
 
 function subscriber(subject) {
-  client =  nats.connect();
+  client = nats.connect();
   client.subscribe(subject, (msg, reply, subject, sid) => {
     console.log('Subscribe: ', msg);
     if (msg === 'unsub') {
@@ -48,11 +48,17 @@ function subscriber(subject) {
     } else if (msg === 'task') {
       totalTask++;
       result = totalTask;
+    } else if (msg === 'cancel') {
+      totalCancel++;
+      result = totalCancel;
+    } else if (msg === 'done') {
+      totalDone++;
+      result = totalDone;
     }
   });
 }
 
-function getResult(){
+function getResult() {
   return result;
 }
 
