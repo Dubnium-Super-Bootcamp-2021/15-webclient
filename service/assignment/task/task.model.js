@@ -1,13 +1,14 @@
 const { EntitySchema } = require('typeorm');
 
 class Task {
-  constructor(id, job,  done, cancel, attachment, addedAt) {
+  constructor(id, job, done, cancel, attachment, addedAt, assignee) {
     this.id = id;
     this.job = job;
     this.done = done;
     this.cancel = cancel;
     this.attachment = attachment;
     this.addedAt = addedAt;
+    this.assignee = assignee;
   }
 }
 
@@ -34,7 +35,7 @@ const TaskSchema = new EntitySchema({
     },
     attachment: {
       type: 'varchar',
-      length:255
+      length: 255,
     },
     addedAt: {
       type: 'timestamp',
