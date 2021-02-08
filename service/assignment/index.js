@@ -20,7 +20,7 @@ async function init() {
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '',
+      password: '12345',
       database: 'dubnium',
     });
     console.log('database connected');

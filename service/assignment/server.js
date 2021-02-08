@@ -12,7 +12,7 @@ const {
 //   upTaskService,
 //   softDeleteTaskService
 } = require('./task/task.service');
-const {
+// const {
   // storeTaskService,
   // getTaskService,
   // upTaskService,
@@ -21,7 +21,7 @@ const {
 // const { init } = require('../database/typeorm/main');
 // const { getConnection } = require('typeorm');
 
-function initServer() {
+function initServer () {
   const server = createServer((req, res) => {
     let method = req.method;
     // route service

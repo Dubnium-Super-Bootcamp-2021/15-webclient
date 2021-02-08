@@ -26,12 +26,12 @@ const TaskSchema = new EntitySchema({
       type: 'text',
     },
     done: {
-      type: 'boolean',
-      default: false,
+      type: 'int',
+      default: 0,
     },
     cancel: {
-      type: 'boolean',
-      default: false,
+      type: 'int',
+      default: 0,
     },
     attachment: {
       type: 'varchar',
