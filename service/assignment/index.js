@@ -38,7 +38,7 @@ async function init() {
  */
 async function main() {
   await init();
-  workerServer.run();
+  initServer();
 }
 
 main();
