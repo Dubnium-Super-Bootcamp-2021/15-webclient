@@ -7,10 +7,7 @@ const {
   removeService,
 } = require('./worker/worker.service');
 const {
-  // storeTaskService,
-  // getTaskService,
-  // upTaskService,
-  // softDeleteTaskService
+ registerTaskService
 } = require('./task/task.service');
 const {
   // storeTaskService,
@@ -20,7 +17,6 @@ const {
 } = require('./peformance/peformance.service');
 // const { init } = require('../database/typeorm/main');
 // const { getConnection } = require('typeorm');
-
 
 function initServer() {
   const server = createServer((req, res) => {
@@ -71,7 +67,7 @@ function initServer() {
         break;
       case uri.pathname === '/task':
         if (method === 'POST') {
-          // storeTaskService(req, res);
+          registerTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -122,4 +118,4 @@ function stop() {
 module.exports = {
   initServer,
   stop,
-}
+};

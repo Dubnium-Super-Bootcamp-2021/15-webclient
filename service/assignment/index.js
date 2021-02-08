@@ -3,7 +3,7 @@ const kv = require('./lib/kv');
 const nats = require('./lib/nats');
 // const { TaskSchema } = require('./tasks/task.model');
 const { WorkerSchema } = require('./worker/worker.model');
-// const { TaskSchema } = require('./task/task.model');
+const { TaskSchema } = require('./task/task.model');
 const { initServer, stop } = require('./server');
 
 /**
@@ -15,12 +15,12 @@ async function init() {
     await kv.connect();
     console.log('KV connected');
     console.log('connect to orm....');
-    await connect([WorkerSchema], {
+    await connect([WorkerSchema, TaskSchema], {
       type: 'mysql',
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '12345',
+      password: '',
       database: 'dubnium',
     });
     console.log('database connected');
@@ -38,7 +38,7 @@ async function init() {
  */
 async function main() {
   await init();
-  workerServer.run();
+  initServer();
 }
 
 main();
