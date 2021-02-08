@@ -39,20 +39,20 @@ function registerTaskService(req, res) {
         file.on('error', abort);
         const attachment = storeObject('attachment', file, mimetype);
         data.attachment = attachment;
-        try {
-          const worker = await registerTask(data);
-          res.setHeader('content-type', 'application/json');
-          const message = JSON.stringify(worker);
-          res.write(message);
-        } catch (err) {
-          if (err === ERROR_REGISTER_TASK_INVALID) {
-            res.statusCode = 401;
-          } else {
-            res.statusCode = 500;
-          }
-          res.write(err);
-        }
-        res.end();
+        // try {
+        //   const task = await registerTask(data);
+        //   res.setHeader('content-type', 'application/json');
+        //   const message = JSON.stringify(task);
+        //   res.write(message);
+        // } catch (err) {
+        //   if (err === ERROR_REGISTER_TASK_INVALID) {
+        //     res.statusCode = 401;
+        //   } else {
+        //     res.statusCode = 500;
+        //   }
+        //   res.write(err);
+        // }
+        // res.end();
 
         break;
       default: {
@@ -73,6 +73,12 @@ function registerTaskService(req, res) {
   });
 
   busboy.on('finish', async () => {
+    const task = await registerTask(data);
+    res.setHeader('content-type', 'application/json');
+    const message = JSON.stringify(task);
+    res.write(message);
+    res.end();
+
     publisher('task.added', 'task');
   });
 

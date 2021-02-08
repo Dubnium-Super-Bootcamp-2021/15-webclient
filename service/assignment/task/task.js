@@ -15,10 +15,10 @@ async function registerTask(data) {
   const task = new Task(
     null,
     data.job,
-    null,
-    null,
+    '',
+    '',
     data.attachment,
-    null,
+    '',
     data.assignee
   );
   await TaskRepo.save(task);
