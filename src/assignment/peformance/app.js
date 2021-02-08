@@ -10,7 +10,6 @@ const { store$ } = require('./store');
 
 //DOM
 const worker = document.getElementById('worker');
-const count = document.getElementById('count');
 const task = document.getElementById('task');
 const done = document.getElementById('done');
 const cancel = document.getElementById('cancel');
@@ -30,6 +29,7 @@ function render(state) {
   for (let i = 0; i < state.length; i++) {
     const todo = state[i];
     const li = document.createElement('li');
+
     li.textContent = todo.task;
     if (todo.done) {
       li.className = 'todo-done';
@@ -44,6 +44,7 @@ function render(state) {
         store$.dispatch(doneTaskAsync(todo.id));
       };
     }
+
     list.append(li);
   }
 }

@@ -18,7 +18,8 @@ async function registerTask(data) {
     0,
     0,
     data.attachment,
-    data.assignee
+    '',
+    data.assignee,
   );
   await TaskRepo.save(task);
   return task;

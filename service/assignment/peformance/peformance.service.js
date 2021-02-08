@@ -1,14 +1,17 @@
-const { addWorker, getWorker } = require('./peformance');
+const { addKv, getKv } = require('./peformance');
 const { subscriber, getResult } = require('../lib/nats');
 
 subscriber('worker.added');
+subscriber('task.added');
+subscriber('task.done');
+subscriber('task.cancel');
 /**
  * service to get total of workers
  */
 async function totalWorkerService(req, res) {
   try {
     let worker = getResult();
-    const workers = await addWorker('worker.added', worker);
+    const workers = await addKv('worker.added', worker);
     res.setHeader('content-type', 'application/json');
     const message = JSON.stringify(workers);
     res.write(message);
@@ -25,10 +28,11 @@ async function totalWorkerService(req, res) {
  */
 async function totalTaskService(req, res) {
   try {
-    // const workers = await list();
+    let task = getResult();
+    const tasks = await addKv('task.added', task);
     res.setHeader('content-type', 'application/json');
-    // const message = JSON.stringify(workers);
-    // res.write(message);
+    const message = JSON.stringify(tasks);
+    res.write(message);
     res.end();
   } catch (err) {
     res.statusCode = 500;
@@ -42,10 +46,11 @@ async function totalTaskService(req, res) {
  */
 async function totalDoneService(req, res) {
   try {
-    // const workers = await list();
+    let taskDone = getResult();
+    const taskDones = await addKv('task.done', taskDone);
     res.setHeader('content-type', 'application/json');
-    // const message = JSON.stringify(workers);
-    // res.write(message);
+    const message = JSON.stringify(taskDones);
+    res.write(message);
     res.end();
   } catch (err) {
     res.statusCode = 500;
@@ -59,10 +64,12 @@ async function totalDoneService(req, res) {
  */
 async function totalCancelService(req, res) {
   try {
-    // const workers = await list();
+    let taskCancel = getResult();
+    const taskCancels = await addKv('task.done', taskCancel);
     res.setHeader('content-type', 'application/json');
-    // const message = JSON.stringify(workers);
-    // res.write(message);
+    const message = JSON.stringify(taskCancels);
+    res.write(message);
+    res.end();
     res.end();
   } catch (err) {
     res.statusCode = 500;
