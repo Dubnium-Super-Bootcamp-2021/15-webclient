@@ -87,9 +87,9 @@ function registerTaskService(req, res) {
  */
 async function listTaskService(req, res) {
   try {
-    const workers = await listTask();
+    const task = await listTask();
     res.setHeader('content-type', 'application/json');
-    const message = JSON.stringify(workers);
+    const message = JSON.stringify(task);
     res.write(message);
     res.end();
   } catch (err) {
