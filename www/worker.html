@@ -45,6 +45,69 @@
   </fieldset>
 </form>
 
+<hr/>
+<div style="padding: 20px 0px 0px 0px;">
+    <table class="css-serial" id="dataTable">
+    <thead>
+     <tr>
+     <th align="center"><b>NO</b></th>
+     <th align="center"><b>NAME</b></th>
+     <th align="center"><b>EMAIL</b></th>
+     <th align="center"><b>ADDRESS</b></th>
+     <th align="center"><b>BIOGRAFI</b></th>
+     <th align="center"><b>NO HP</b></th>
+     <th align="center"><b>PHOTO</b></th>
+     </tr>
+     </thead>
+   <tr id="tableWorker">
+      <td id=""></td>
+      <td id=""></td>
+      <td id=""></td>
+      <td id=""></td>
+      <td id=""></td>
+      <td id=""></td>
+      <td id=""></td>
+    </tr>
+   </table>
+   </div>
 
 </body>
 </html>
+
+
+<style type="text/css">
+  table{
+    width: 500px; 
+    border-collapse: collapse;
+    margin: 30px 0px 30px;
+    background-color: #fff;
+    font-size: 14px;
+    }
+  table tr {
+      height: 40px;
+      }
+  table th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  table td, th {
+    padding: 6px 6px 6px 10px;
+    border: 1px solid #ccc;
+  }
+  
+  /*untuk pewarnaan baris selang-seling */
+  table tr:nth-of-type(odd) {
+    background: #eee;
+  }
+  
+  /* Penomoran otomatis pada baris */
+  .css-serial {
+    counter-reset: serial-number;  /* Atur penomoran ke 0 */
+  }
+  .css-serial td:first-child:before {
+    counter-increment: serial-number;  /* Kenaikan penomoran */
+    content: counter(serial-number);  /* Tampilan counter */
+  }
+  </style>
