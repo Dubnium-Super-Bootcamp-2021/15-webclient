@@ -6,23 +6,21 @@ const {
   registerService,
   removeService,
 } = require('./worker/worker.service');
-// const {
-  // storeTaskService,
-  // getTaskService,
-  // upTaskService,
-  // softDeleteTaskService
-// } = require('./task/task.service');
-// const {
-  // storeTaskService,
-  // getTaskService,
-  // upTaskService,
-  // softDeleteTaskService
-// } = require('./peformance/peformance.service');
-// const { init } = require('../database/typeorm/main');
-// const { getConnection } = require('typeorm');
+const {
+  registerTaskService,
+  listTaskService,
+  doneTaskService,
+  cancelTaskService,
+} = require('./task/task.service');
+const {
+  totalWorkerService,
+  totalTaskService,
+  totalDoneService,
+  totalCancelService,
+} = require('./peformance/peformance.service');
 
 
-function initServer() {
+function initServer () {
   const server = createServer((req, res) => {
     let method = req.method;
     // route service
@@ -71,7 +69,7 @@ function initServer() {
         break;
       case uri.pathname === '/task':
         if (method === 'POST') {
-          // storeTaskService(req, res);
+          registerTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -79,7 +77,7 @@ function initServer() {
         break;
       case uri.pathname === '/getalltask':
         if (method === 'GET') {
-          // getTaskService(req, res);
+          listTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -87,15 +85,47 @@ function initServer() {
         break;
       case uri.pathname === '/updatetask':
         if (method === 'PUT') {
-          // upTaskService(req, res);
+          doneTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
         }
         break;
-      case uri.pathname === '/deletetask':
-        if (method === 'DELETE') {
-          // softDeleteTaskService(req, res);
+      case uri.pathname === '/canceltask':
+        if (method === 'PUT') {
+          cancelTaskService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logworker':
+        if (method === 'GET') {
+          totalWorkerService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logtask':
+        if (method === 'GET') {
+          totalTaskService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logdone':
+        if (method === 'GET') {
+          totalDoneService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logcancel':
+        if (method === 'GET') {
+          totalCancelService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -122,4 +152,4 @@ function stop() {
 module.exports = {
   initServer,
   stop,
-}
+};
