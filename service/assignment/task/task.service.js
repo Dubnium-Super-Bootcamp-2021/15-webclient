@@ -115,6 +115,7 @@ async function doneTaskService(req, res) {
     const task = await doneTask(id);
     res.setHeader('content-type', 'application/json');
     res.statusCode = 200;
+    publisher('task.done', 'done');
     const message = JSON.stringify(task);
     res.write(message);
     res.end();
@@ -144,6 +145,7 @@ async function cancelTaskService(req, res) {
     res.setHeader('content-type', 'application/json');
     res.statusCode = 200;
     const message = JSON.stringify(task);
+    publisher('task.cancel', 'cancel');
     res.write(message);
     res.end();
   } catch (err) {
