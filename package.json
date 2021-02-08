@@ -4,6 +4,7 @@
   "description": "webclient with redux async logic & data fetching",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "build": "webpack --mode production",
     "dev": "webpack serve --open --mode development",
     "lint": "eslint .",
@@ -20,7 +21,10 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "mocha": "^8.2.1",
+    "chai": "^4.2.0",
+    "nyc": "^15.1.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
@@ -30,6 +34,16 @@
     "pg-hstore": "^2.3.3",
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.6.3",
-    "typeorm": "^0.2.30"
+    "typeorm": "^0.2.30",
+    "busboy": "^0.3.1",
+    "mariadb": "^2.5.2",
+    "mime-types": "^2.1.28",
+    "minio": "^7.0.18",
+    "mysql": "^2.18.1",
+    "nats": "^1.4.12",
+    "redis": "^3.0.2",
+    "sequelize": "^6.5.0",
+    "sinon": "^9.2.3",
+    "sqlite3": "^5.0.1"
   }
 }
