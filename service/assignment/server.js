@@ -7,14 +7,17 @@ const {
   removeService,
 } = require('./worker/worker.service');
 const {
- registerTaskService
+  registerTaskService,
+//   getTaskService,
+//   upTaskService,
+//   softDeleteTaskService
 } = require('./task/task.service');
 const {
   // storeTaskService,
   // getTaskService,
   // upTaskService,
   // softDeleteTaskService
-} = require('./peformance/peformance.service');
+// } = require('./peformance/peformance.service');
 // const { init } = require('../database/typeorm/main');
 // const { getConnection } = require('typeorm');
 
@@ -35,7 +38,7 @@ function initServer() {
     switch (true) {
       case uri.pathname === '/store':
         if (method === 'POST') {
-          listService(req, res);
+          registerService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -43,7 +46,7 @@ function initServer() {
         break;
       case uri.pathname === '/getallworker':
         if (method === 'GET') {
-          registerService(req, res);
+          listService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
