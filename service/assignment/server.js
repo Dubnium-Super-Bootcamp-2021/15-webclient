@@ -8,22 +8,32 @@ const {
 } = require('./worker/worker.service');
 const {
   registerTaskService,
-//   getTaskService,
-//   upTaskService,
-//   softDeleteTaskService
+  listTaskService,
+  doneTaskService,
+  cancelTaskService,
 } = require('./task/task.service');
 const {
-  // storeTaskService,
-  // getTaskService,
-  // upTaskService,
-  // softDeleteTaskService
-// } = require('./peformance/peformance.service');
-// const { init } = require('../database/typeorm/main');
-// const { getConnection } = require('typeorm');
+  totalWorkerService,
+  totalTaskService,
+  totalDoneService,
+  totalCancelService,
+} = require('./peformance/peformance.service');
 
-function initServer() {
+
+function initServer () {
   const server = createServer((req, res) => {
     let method = req.method;
+    // handle preflight request
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Request-Method', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      res.end();
+      return;
+    }
     // route service
     let message = 'tidak ditemukan data';
     let statusCode = 200;
@@ -61,7 +71,7 @@ function initServer() {
         }
         break;
       case uri.pathname === '/del':
-        if (method === 'DELETE') {
+        if (method === 'PUT') {
           removeService(req, res);
         } else {
           message = 'Method tidak tersedia';
@@ -78,7 +88,7 @@ function initServer() {
         break;
       case uri.pathname === '/getalltask':
         if (method === 'GET') {
-          // getTaskService(req, res);
+          listTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
@@ -86,15 +96,47 @@ function initServer() {
         break;
       case uri.pathname === '/updatetask':
         if (method === 'PUT') {
-          // upTaskService(req, res);
+          doneTaskService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();
         }
         break;
-      case uri.pathname === '/deletetask':
-        if (method === 'DELETE') {
-          // softDeleteTaskService(req, res);
+      case uri.pathname === '/canceltask':
+        if (method === 'PUT') {
+          cancelTaskService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logworker':
+        if (method === 'GET') {
+          totalWorkerService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logtask':
+        if (method === 'GET') {
+          totalTaskService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logdone':
+        if (method === 'GET') {
+          totalDoneService(req, res);
+        } else {
+          message = 'Method tidak tersedia';
+          respond();
+        }
+        break;
+      case uri.pathname === '/logcancel':
+        if (method === 'GET') {
+          totalCancelService(req, res);
         } else {
           message = 'Method tidak tersedia';
           respond();

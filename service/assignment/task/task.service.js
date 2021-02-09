@@ -39,21 +39,6 @@ function registerTaskService(req, res) {
         file.on('error', abort);
         const attachment = storeObject('attachment', file, mimetype);
         data.attachment = attachment;
-        // try {
-        //   const task = await registerTask(data);
-        //   res.setHeader('content-type', 'application/json');
-        //   const message = JSON.stringify(task);
-        //   res.write(message);
-        // } catch (err) {
-        //   if (err === ERROR_REGISTER_TASK_INVALID) {
-        //     res.statusCode = 401;
-        //   } else {
-        //     res.statusCode = 500;
-        //   }
-        //   res.write(err);
-        // }
-        // res.end();
-
         break;
       default: {
         const noop = new Writable({
@@ -67,7 +52,7 @@ function registerTaskService(req, res) {
   });
 
   busboy.on('field', (fieldname, val) => {
-    if (['job', 'assignee'].includes(fieldname)) {
+    if (['job', 'attachment', 'assignee'].includes(fieldname)) {
       data[fieldname] = val;
     }
   });

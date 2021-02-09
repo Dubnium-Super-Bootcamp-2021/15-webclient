@@ -31,7 +31,7 @@ function close() {
 
 function publisher(subject, message) {
   client.publish(subject, message);
-  console.log(`${message} publish: ${message}, subject: ${subject}`);
+  console.log(`Publish: ${message}, subject: ${subject}`);
 }
 
 function subscriber(subject) {
