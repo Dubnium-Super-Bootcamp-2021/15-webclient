@@ -18,9 +18,15 @@ function loadWorkers(state, action) {
     state = action.payload;
     return state;
 };
-  
+
+function deleteWorker(state, action) {
+    const worker = state.find((t) => t.id === action.payload);
+    return state;
+}
+
 module.exports = {
     initialState,
     add,
     loadWorkers,
+    deleteWorker,
 };

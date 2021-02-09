@@ -1,1 +1,1 @@
-require('./lib/todo/app');
+require('./assignment/worker/app');

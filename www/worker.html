@@ -12,7 +12,7 @@
   <li><a href="performance.html">Performance</a></li>
 </ul>
 
-<form action="" method="">
+<form id="form-worker" action="" method="POST">
   <fieldset>
   <legend>Menambahkan Worker</legend>
   <p>
@@ -48,7 +48,7 @@
 <hr/>
 <div style="padding: 20px 0px 0px 0px;">
     <table class="css-serial" id="dataTable">
-    <thead>
+    <thead id="kepala">
      <tr>
      <th align="center"><b>NO</b></th>
      <th align="center"><b>NAME</b></th>
@@ -57,21 +57,17 @@
      <th align="center"><b>BIOGRAFI</b></th>
      <th align="center"><b>NO HP</b></th>
      <th align="center"><b>PHOTO</b></th>
+     <th align="center"><b>HAPUS</b></th>
      </tr>
      </thead>
-   <tr id="tableWorker">
-      <td id=""></td>
-      <td id=""></td>
-      <td id=""></td>
-      <td id=""></td>
-      <td id=""></td>
-      <td id=""></td>
-      <td id=""></td>
-    </tr>
+     <tbody id="table-worker">
+
+     </tbody>
    </table>
    </div>
 
 </body>
+<script type="text/javascript" src="./worker.js"></script>
 </html>
 
 
