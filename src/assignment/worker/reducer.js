@@ -20,8 +20,7 @@ function loadWorkers(state, action) {
 };
 
 function deleteWorker(state, action) {
-    const worker = state.find((t) => t.id === action.payload);
-    return state;
+    return state.filter(user => user.id !== action.payload);
 }
 
 module.exports = {
