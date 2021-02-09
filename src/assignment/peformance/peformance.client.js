@@ -9,27 +9,29 @@ const {
   store$,
   workerAction,
   taskAction,
+  loadDoneAction,
+  loadCancelAction,
   loadTasksAction,
 } = require('./store');
 
 const getWorkerAsync = async (dispatch, getState) => {
   const workerAsync = await getWorkerApi();
-  dispatch(loadTasksAction(workerAsync));
+  dispatch(workerAction(workerAsync));
 };
 
 const getTaskAsync = async (dispatch, getState) => {
   const tasksAsync = await getTaskApi();
-  dispatch(loadTasksAction(tasksAsync));
+  dispatch(taskAction(tasksAsync));
 };
 
-const loadTasksAsync = async (dispatch, getState) => {
-  const tasksAsync = await fetchTasksApi();
-  dispatch(loadTasksAction(tasksAsync));
+const doneTaskAsync = async (dispatch, getState) => {
+  const tasksAsync = await getTaskDoneApi();
+  dispatch(loadDoneAction(tasksAsync));
 };
 
-const loadTasksAsync = async (dispatch, getState) => {
-  const tasksAsync = await fetchTasksApi();
-  dispatch(loadTasksAction(tasksAsync));
+const undoneTaskAsync = async (dispatch, getState) => {
+  const tasksAsync = await getTaskCancelApi();
+  dispatch(loadCancelAction(tasksAsync));
 };
 
 module.exports = {
