@@ -1,0 +1,11 @@
+.cancel-task {
+    text-decoration: line-through;
+}
+
+.done-task {
+    color: green;
+}
+
+span {
+    display: inline-block;
+}

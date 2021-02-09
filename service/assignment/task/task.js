@@ -37,32 +37,32 @@ function listTask() {
  * done a task by an id
  */
 async function doneTask(id) {
-  const taskRepo = getConnection();
-  const task = await taskRepo.findOne(id);
-  if (!task) {
-    throw ERROR_TASK_NOT_FOUND;
-  }
-  await taskRepo
+  const con = getConnection();
+  // const task = con.getRepository('Task');
+  // if (!task) {
+  //   throw ERROR_TASK_NOT_FOUND;
+  // }
+  const taskRepo = await con
     .createQueryBuilder()
     .update(Task)
     .set({ done: true })
     .where('id = :id', { id: id })
     .execute();
-  return task;
+  return taskRepo;
 }
 async function cancelTask(id) {
-  const taskRepo = getConnection();
-  const task = await taskRepo.findOne(id);
-  if (!task) {
-    throw ERROR_TASK_NOT_FOUND;
-  }
-  await taskRepo
+  const con = getConnection();
+  // const task = await taskRepo.findOne(id);
+  // if (!task) {
+  //   throw ERROR_TASK_NOT_FOUND;
+  // }
+  const taskRepo = await con
     .createQueryBuilder()
     .update(Task)
     .set({ cancel: true })
     .where('id = :id', { id: id })
     .execute();
-  return task;
+  return taskRepo;
 }
 
 module.exports = {
