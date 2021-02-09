@@ -1,21 +1,21 @@
-const { client } = require('./client')
+const { client } = require('./client');
 
 async function getAllTaskApi() {
-    return await client.get('http://localhost:9999/getalltask');
+  return await client.get('http://localhost:9999/getalltask');
 }
-async function addTaskApi() {
-    return await client.post('http://localhost:9999/task');
+async function addTaskApi(task) {
+  return await client.post('http://localhost:9999/task', { task });
 }
-async function updateTaskApi() {
-    return await client.put('http://localhost:9999/updatetask');
+async function updateTaskApi(id) {
+  return await client.put(`http://localhost:9999/updatetask?id=${id}`);
 }
-async function cancelTaskApi() {
-    return await client.put('http://localhost:9999/canceltask');
+async function cancelTaskApi(id) {
+  return await client.put(`http://localhost:9999/canceltask?id=${id}`);
 }
 
 module.exports = {
-    getAllTaskApi,
-    addTaskApi,
-    updateTaskApi,
-    cancelTaskApi
-}
+  getAllTaskApi,
+  addTaskApi,
+  updateTaskApi,
+  cancelTaskApi,
+};

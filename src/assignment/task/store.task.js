@@ -4,6 +4,7 @@ const {
   configureStore,
 } = require('@reduxjs/toolkit');
 const thunkMiddleware = require('redux-thunk');
+const { asyncMiddleware } = require('./task.middleware');
 
 const {
   initialState,
