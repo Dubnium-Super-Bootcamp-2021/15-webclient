@@ -3,7 +3,7 @@ const { fetchWorkersApi, addWorkerApi, deleteWorkerApi } = require('../api/worke
 const {
   addAction,
   loadWorkersAction,
-  deleteWorkersAction,
+  deleteWorkerAction,
 } = require('./store');
 
 const addWorkerAsync = (worker) => async (dispatch, getState) => {
@@ -19,7 +19,7 @@ const loadWorkersAsync = async (dispatch, getState) => {
 const deleteWorkerAsync = (id) => {
   return async (dispatch, getState) => {
     await deleteWorkerApi(id);
-    dispatch(deleteWorkersAction(id));
+    dispatch(deleteWorkerAction(id));
   };
 };
 

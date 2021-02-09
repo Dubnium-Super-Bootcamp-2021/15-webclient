@@ -9,12 +9,12 @@ const thunkMiddleware = require('redux-thunk');
 
 const addAction = createAction('add');
 const loadWorkersAction = createAction('loadWorkers');
-const deleteWorkersAction = createAction('deleteWorker');
+const deleteWorkerAction = createAction('deleteWorker');
 
 const workerReducer = createReducer(initialState, {
     [addAction]: add,
     [loadWorkersAction]: loadWorkers,
-    [deleteWorkersAction]: deleteWorker
+    [deleteWorkerAction]: deleteWorker
 });
 
 const store$ = configureStore({
@@ -26,5 +26,5 @@ module.exports = {
     store$,
     addAction,
     loadWorkersAction,
-    deleteWorkersAction,
+    deleteWorkerAction,
 };
